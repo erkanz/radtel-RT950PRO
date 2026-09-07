@@ -1,0 +1,17 @@
+{
+  "name": "Echo suppression",
+  "patches": [
+    {
+      "address": "0x08009656",
+      "purpose": "do not report host RTX1 validation frames as radio RX",
+      "expect": "91f87700012801d0032800bf",
+      "replace": "4bf24c10c2f20000844204d0"
+    },
+    {
+      "address": "0x080097B6",
+      "purpose": "do not report host RTX1 TX frames back to the BLE host",
+      "expect": "154991f82700012801d002280dd191f87700022801d0032807d1bdf80a03001f81b20df251200df03afe",
+      "replace": "154991f82700013801280ed891f877000238012809d8f0b2332806d0bdf80a1304390df251200df03afe"
+    }
+  ]
+}
