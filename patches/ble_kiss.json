@@ -1,0 +1,41 @@
+{
+  "name": "BLE KISS support",
+  "patches": [
+    {
+      "address": "0x0801753A",
+      "purpose": "BLE KISS RX report path",
+      "expect": "e3d1",
+      "replace": "00bf"
+    },
+    {
+      "address": "0x08028B08",
+      "purpose": "AX.25 frame acceptance",
+      "expect": "8c7100200a5c52000a54401c80b20728f8d9",
+      "replace": "30252c438c7107200a5c52000a540138fad5"
+    },
+    {
+      "address": "0x08009660",
+      "purpose": "radio to BLE reporting bridge",
+      "expect": "04d1",
+      "replace": "00bf"
+    },
+    {
+      "address": "0x0800A52A",
+      "purpose": "host TX receive window",
+      "expect": "032901d9",
+      "replace": "ff2901d9"
+    },
+    {
+      "address": "0x0800BE88",
+      "purpose": "BLE host RTX1 TX handler",
+      "expect": "402c00d9402422460d48f7f727fe0c4d4ff4fa60103de880ac8000f083fa01280cd10102074809f01afc0749012081f84700a870bde8704010f0eabc70bd0000d4af002000080140",
+      "replace": "0d460d4e28680d49884213d1281d211ffdf75afb70b10a480a49e522f7f71efe0020f072b0820120b073f073284603211cf0cefd70bd0000e4a9002052545831ceab002004aa0020"
+    },
+    {
+      "address": "0x0801753C",
+      "purpose": "BLE KISS RX timing",
+      "expect": "4ff416500df0e6f8",
+      "replace": "00bf00bf00bf00bf"
+    }
+  ]
+}
