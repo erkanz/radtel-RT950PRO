@@ -34,12 +34,12 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release delete v1.0 --yes --cleanup-tag 2>/dev/null || true
           gh release delete v1.0-pre-release --yes --cleanup-tag 2>/dev/null || true
-          gh release create v1.0-pre-release \
+          gh release delete v1.0 --yes --cleanup-tag 2>/dev/null || true
+          gh release create v1.0 \
             build/RT950_V029_v1.0.BTF \
             build/RT950_V029_v1.0.firmware.bin \
-            --title "RT-950 PRO v1.0 Pre-release" \
+            --title "RT-950 PRO v1.0" \
             --notes "BLE KISS RX/TX working. USB KISS RX working; TX in progress." \
             --prerelease \
             --target "${GITHUB_SHA}"
