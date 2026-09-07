@@ -38,7 +38,7 @@ jobs:
           gh release create v1.0 \
             build/RT950_V029_v1.0.BTF \
             build/RT950_V029_v1.0.firmware.bin \
-            --title "RT-950 PRO v1.0" \
+            --title "RT-950 PRO v1.0 Pre-release" \
             --notes "BLE KISS RX/TX working. USB KISS RX working; TX in progress." \
             --prerelease \
             --target "${GITHUB_SHA}"
