@@ -7,14 +7,10 @@ BLE KISS support has been added and is working reliably.
 - USB KISS RX: Working
 - USB KISS TX: In progress
 
-Build from the OEM v0.29 firmware:
-
-git clone https://github.com/erkanz/radtel-RT950PRO.git
-cd radtel-RT950PRO
-
-python3 scripts/build_v1.py oem/OEM_v0.29.BTF
+## Build
 
 ```bash
-python3 tools/fetch_oem_v029.py
+git clone https://github.com/erkanz/radtel-RT950PRO.git
+cd radtel-RT950PRO
 python3 scripts/build_v1.py oem/OEM_v0.29.BTF
 ```
