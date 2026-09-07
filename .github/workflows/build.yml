@@ -30,7 +30,7 @@ jobs:
           path: |
             build/RT950_V029_v1.0.BTF
             build/RT950_V029_v1.0.firmware.bin
-      - name: Publish pre-release
+      - name: Publish latest release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -41,5 +41,5 @@ jobs:
             build/RT950_V029_v1.0.firmware.bin \
             --title "RT-950 PRO v1.0" \
             --notes "BLE KISS RX/TX working. USB KISS RX working; TX in progress." \
-            --prerelease \
+            --latest \
             --target "${GITHUB_SHA}"
