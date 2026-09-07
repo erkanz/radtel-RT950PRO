@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Build v1.0
+      - name: Build v1.0 from repository OEM
         run: python3 scripts/build_v1.py oem/OEM_v0.29.BTF
       - uses: actions/upload-artifact@v4
         with:
