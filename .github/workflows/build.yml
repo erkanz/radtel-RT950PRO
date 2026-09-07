@@ -5,9 +5,10 @@ on:
   push:
     branches: [main]
     paths:
-      - tools/**
-      - scripts/**
+      - oem/**
       - patches/**
+      - scripts/**
+      - tools/btf.py
       - .github/workflows/build.yml
 
 permissions:
@@ -18,10 +19,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Install OEM archive extractor
-        run: sudo apt-get update && sudo apt-get install -y unar p7zip-full
-      - name: Fetch OEM v0.29
-        run: python3 tools/fetch_oem_v029.py
       - name: Build v1.0
         run: python3 scripts/build_v1.py oem/OEM_v0.29.BTF
       - uses: actions/upload-artifact@v4
@@ -34,12 +31,10 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release delete v1.0-pre-release --yes --cleanup-tag 2>/dev/null || true
           gh release delete v1.0 --yes --cleanup-tag 2>/dev/null || true
           gh release create v1.0 \
             build/RT950_V029_v1.0.BTF \
             build/RT950_V029_v1.0.firmware.bin \
             --title "RT-950 PRO v1.0" \
             --notes "BLE KISS RX/TX working. USB KISS RX working; TX in progress." \
-            --latest \
             --target "${GITHUB_SHA}"
