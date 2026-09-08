@@ -1,4 +1,4 @@
-name: Build and publish v1.0
+name: Build and publish RT-950 PRO v1.0
 
 on:
   workflow_dispatch:
@@ -7,27 +7,53 @@ on:
     paths:
       - oem/**
       - patches/**
+      - reference/**
+      - src/**
       - scripts/**
-      - tools/btf.py
+      - tests/**
+      - tools/**
+      - README.md
+      - RELEASE_NOTES_v1.0.md
+      - USB_KISS_TX_TEST05_NOTES.txt
+      - RT950_USB_KISS_TX_TEST05_HARDWARE_RESULT.txt
       - .github/workflows/build.yml
 
 permissions:
   contents: write
 
 jobs:
-  build:
+  build-and-release:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Build v1.0 from repository OEM
+
+      - name: Build hardware-validated TEST05 from OEM v0.29
         run: python3 scripts/build_v1.py oem/OEM_v0.29.BTF
+
+      - name: Full TEST05 static/reproducibility gate
+        run: python3 tests/run_static_gate.py
+
+      - name: Prepare canonical v1.0 release assets
+        run: |
+          cp build/RT950_V029_v1.0_USB_KISS_TX_TEST05.BTF build/RT950_V029_v1.0.BTF
+          cp build/RT950_V029_v1.0_USB_KISS_TX_TEST05.firmware.bin build/RT950_V029_v1.0.firmware.bin
+          python3 scripts/package_source.py RT950_V1.0_USB_KISS_TX_TEST05_FULL_SOURCE.zip
+          sha256sum \
+            build/RT950_V029_v1.0.BTF \
+            build/RT950_V029_v1.0.firmware.bin \
+            RT950_V1.0_USB_KISS_TX_TEST05_FULL_SOURCE.zip \
+            > RT950_V1.0_SHA256.txt
+
       - uses: actions/upload-artifact@v4
         with:
-          name: RT950_V029_v1.0
+          name: RT950_V029_v1.0_FINAL
           path: |
             build/RT950_V029_v1.0.BTF
             build/RT950_V029_v1.0.firmware.bin
-      - name: Publish latest release
+            RT950_V1.0_USB_KISS_TX_TEST05_FULL_SOURCE.zip
+            RT950_V1.0_SHA256.txt
+
+      - name: Publish final v1.0 release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -35,6 +61,8 @@ jobs:
           gh release create v1.0 \
             build/RT950_V029_v1.0.BTF \
             build/RT950_V029_v1.0.firmware.bin \
+            RT950_V1.0_USB_KISS_TX_TEST05_FULL_SOURCE.zip \
+            RT950_V1.0_SHA256.txt \
             --title "RT-950 PRO v1.0" \
-            --notes "BLE KISS RX/TX working. USB KISS RX working; TX in progress." \
+            --notes-file RELEASE_NOTES_v1.0.md \
             --target "${GITHUB_SHA}"
