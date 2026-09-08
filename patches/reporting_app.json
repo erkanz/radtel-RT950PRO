@@ -1,0 +1,11 @@
+{
+  "name": "Reporting App direction control",
+  "patches": [
+    {
+      "address": "0x08009648",
+      "purpose": "honor Reporting App Off/RX/TX/Both for RF-to-BLE reporting while suppressing host RTX1 validation echo",
+      "expect": "0a4991f82700012801d002280ad14bf24c10c2f20000844204d01ffa88f102a80df0f4fe",
+      "replace": "0a4991f82700013801280bd891f87700c00707d5899a120604d41ffa88f102a80df0f4fe"
+    }
+  ]
+}
