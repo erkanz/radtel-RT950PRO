@@ -1,0 +1,50 @@
+USB KISS TX TEST05
+==================
+
+Immediate baseline: USB KISS TX TEST04 on OEM v0.29.
+
+Hardware baseline inherited from TEST04:
+  76-byte USB TX: PASS
+  135-byte USB TX: PASS
+  BLE KISS RX/TX: PASS
+  180-byte 7-digi: PTT FREEZE FAIL
+  184-byte 7-digi: PTT FREEZE FAIL
+  185/193: TEST04 guard DROP / NO PTT
+
+TEST05 binary-derived corrections:
+
+1) OEM HDLC builder 0x08028B60
+   - encoded-data capacity = 186 bytes
+   - FLAG + raw AX.25 + FCS(2) + FLAG => raw hard max = 182
+
+2) OEM header packer 0x08029770
+   - stored header-length word is at record offsets 64..65
+   - 7 digis => 63 address bytes
+   - CTRL -> offset 63
+   - PID 0xF0 -> offset 64
+   - PID overwrites length low byte; downstream length becomes 0x00F0 / 240
+   - max safe digipeaters without rewriting this OEM function = 6
+
+3) OEM parser 0x08009550
+   - 128-byte info buffer includes terminating NUL
+   - full-fidelity info max = 127 bytes
+
+TEST05 guard:
+  raw AX.25 <= 182
+  max digis = 6
+  information <= 127
+  malformed/oversize => parser resync, no USB-ready state, no RF dispatch
+
+TEST05 does NOT change:
+  RF TX engine
+  Reporting App patch
+  echo suppression / TX reporting gate
+  TEST04 patched RTX1 handler
+  BLE KISS RX/TX path
+  radio -> USB KISS RX formatter
+
+Known unsafe 180/184 frames must NOT be transmitted by older builds again.
+With TEST05 they are guard-validation vectors only and must produce NO PTT.
+
+Hardware checklist result: ALL PASS (2026-09-08).
+TEST05 is the final v1.0 release baseline.
