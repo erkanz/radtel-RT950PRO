@@ -7,6 +7,25 @@ BLE KISS support has been added and is working reliably.
 - USB KISS RX: Working
 - USB KISS TX: Working
 
+1. OEM HDLC builder raw AX.25 ceiling: **182 bytes**.
+2. OEM header packer structural limit: **maximum 6 digipeaters**. A 7th digipeater collides with the OEM header-length metadata field.
+3. OEM APRS information-field full-fidelity limit: **127 bytes**.
+
+A USB KISS DATA frame reaches the existing RTX1/RF TX path only when all three constraints are satisfied. Otherwise it is dropped and the parser resynchronizes without starting PTT.
+
+For ordinary APRS UI frames the effective raw AX.25 limits are:
+
+| Digipeaters | Max raw AX.25 |
+|---:|---:|
+| 0 | 143 |
+| 1 | 150 |
+| 2 | 157 |
+| 3 | 164 |
+| 4 | 171 |
+| 5 | 178 |
+| 6 | 182 |
+| 7 | DROP |
+
 ## APRSdroid BLE KISS Support
 
 For BLE KISS operation with APRSdroid, use the BLE-enabled APRSdroid build available here:
@@ -19,7 +38,7 @@ With the Radtel RT-950 Pro, both **USB KISS** and **BLE KISS** have been tested 
 
 Currently tested devices:
 
-- T-TWR
+- T-TWR Plus
 - Radtel RT-950 Pro
 
 ## Build
