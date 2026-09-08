@@ -5,7 +5,7 @@ BLE KISS support has been added and is working reliably.
 - BLE KISS RX: Working
 - BLE KISS TX: Working
 - USB KISS RX: Working
-- USB KISS TX: In progress
+- USB KISS TX: Working
 
 ## Build
 

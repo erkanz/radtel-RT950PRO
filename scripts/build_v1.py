@@ -14,17 +14,24 @@ from btf import build_btf, extract_raw  # noqa: E402
 BASE = 0x08003000
 OEM_BTF_SHA256 = "53226024c9b4a782c85556a120afa5e690c132a85bf4048e59d2d193e5eaf272"
 OEM_RAW_SHA256 = "025bc583802a96911836e274cdfdf3ce05d9919bc77451b7f7f1573fb5571907"
-FINAL_BTF_SHA256 = "75969e7694c3d58253355a54166626e795b506821697f5e618acfc794bba1e98"
-FINAL_RAW_SHA256 = "ad964c72210d747a743d2a2add0b05fe64b62b704c7774c01f955520daa238eb"
+FINAL_BTF_SHA256 = "0779e1aaf76e75bcd0d8d2c5435a92d0b92aedc5db09df45bda3c38085d342cb"
+FINAL_RAW_SHA256 = "f8a3f087d61c76191cfaf354cb5e39f1ea4703e12ff679d252ba0e7eb1b3fb08"
 PATCH_FILES = [
     ROOT / "patches" / "ble_kiss.json",
     ROOT / "patches" / "echo_suppression.json",
     ROOT / "patches" / "reporting_app.json",
+    ROOT / "patches" / "usb_kiss_tx.json",
 ]
 
 
 def sha256(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
+
+
+def patch_expect_bytes(patch: dict) -> bytes:
+    if "expect_zero_bytes" in patch:
+        return bytes(int(patch["expect_zero_bytes"]))
+    return bytes.fromhex(patch["expect"])
 
 
 def apply_patch(image: bytearray, address: int, expect: bytes, replace: bytes, purpose: str) -> None:
@@ -60,7 +67,7 @@ def main() -> None:
             apply_patch(
                 image,
                 int(patch["address"], 16),
-                bytes.fromhex(patch["expect"]),
+                patch_expect_bytes(patch),
                 bytes.fromhex(patch["replace"]),
                 patch["purpose"],
             )

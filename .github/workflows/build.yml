@@ -36,5 +36,5 @@ jobs:
             build/RT950_V029_v1.0.BTF \
             build/RT950_V029_v1.0.firmware.bin \
             --title "RT-950 PRO v1.0" \
-            --notes "BLE KISS RX/TX working. USB KISS RX working; TX in progress." \
+            --notes "BLE KISS RX/TX working. USB KISS RX/TX working." \
             --target "${GITHUB_SHA}"
