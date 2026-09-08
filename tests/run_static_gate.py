@@ -86,5 +86,5 @@ with tempfile.TemporaryDirectory() as a, tempfile.TemporaryDirectory() as b:
 print('DETERMINISTIC_BUILD=PASS')
 
 subprocess.run([sys.executable,str(ROOT/'tests/test_usb_kiss_tx.py')],check=True)
-subprocess.run([str(ROOT/'scripts/rebuild_usb_kiss_blob.sh')],check=True)
+subprocess.run(['bash',str(ROOT/'scripts/rebuild_usb_kiss_blob.sh')],check=True)
 print('STATIC_GATE=PASS')
