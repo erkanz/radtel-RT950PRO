@@ -1,0 +1,22 @@
+RT-950 PRO USB KISS TX TEST05 — HARDWARE RESULT
+================================================
+
+Date: 2026-09-08
+Result: ALL PASS
+Release gate: PASS
+
+Validated gate items:
+- USB KISS RX
+- USB KISS TX normal frames
+- 76-byte regression
+- 135-byte regression
+- safe-boundary acceptance
+- oversize DROP / NO PTT
+- 180/184 incident vectors blocked / NO PTT
+- BLE KISS RX
+- BLE KISS TX
+- host-originated TX echo suppression
+- parser recovery / subsequent normal frame
+- no PTT freeze observed
+
+TEST05 is approved as the hardware-validated RT-950 PRO v1.0 baseline.
