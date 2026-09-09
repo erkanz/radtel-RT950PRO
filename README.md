@@ -1,3 +1,12 @@
+# ⚠️ **WORK IN PROGRESS**
+
+> [!WARNING]
+> ## **This firmware is still under active development and testing.**
+>
+> **Some features may be incomplete, experimental, or may not work as expected.**
+>
+> **Use at your own discretion.**
+
 # RT-950 PRO v1.0
 
 BLE KISS support has been added and is working reliably.
