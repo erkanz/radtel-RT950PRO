@@ -63,8 +63,10 @@ Currently tested devices:
 
 ## Build
 
+The build entry point is version-independent. Use the same command for future firmware versions:
+
 ```bash
 git clone https://github.com/erkanz/radtel-RT950PRO.git
 cd radtel-RT950PRO
-python3 scripts/build_v1_1.py oem/OEM_v0.29.BTF
+python3 scripts/build.py oem/OEM_v0.29.BTF
 ```
