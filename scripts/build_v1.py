@@ -14,13 +14,14 @@ from btf import build_btf, extract_raw  # noqa: E402
 BASE = 0x08003000
 OEM_BTF_SHA256 = "53226024c9b4a782c85556a120afa5e690c132a85bf4048e59d2d193e5eaf272"
 OEM_RAW_SHA256 = "025bc583802a96911836e274cdfdf3ce05d9919bc77451b7f7f1573fb5571907"
-FINAL_BTF_SHA256 = "0779e1aaf76e75bcd0d8d2c5435a92d0b92aedc5db09df45bda3c38085d342cb"
-FINAL_RAW_SHA256 = "f8a3f087d61c76191cfaf354cb5e39f1ea4703e12ff679d252ba0e7eb1b3fb08"
+FINAL_BTF_SHA256 = "c3ddd1e500e98b25d334500d7fbed0a518b289c5e85a0a32b767d0a59a3e1a28"
+FINAL_RAW_SHA256 = "032b473771d4e8d6000b86f25ff70e5a2b1666b76650d42e1d10875991fae223"
 PATCH_FILES = [
     ROOT / "patches" / "ble_kiss.json",
     ROOT / "patches" / "echo_suppression.json",
     ROOT / "patches" / "reporting_app.json",
     ROOT / "patches" / "usb_kiss_tx.json",
+    ROOT / "patches" / "test24l_aprs_sms.json",
 ]
 
 
@@ -48,7 +49,7 @@ def apply_patch(image: bytearray, address: int, expect: bytes, replace: bytes, p
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Build RT-950 PRO v1.0 from OEM V0.29")
+    parser = argparse.ArgumentParser(description="Build RT-950 PRO v1.0 TEST24L from OEM V0.29")
     parser.add_argument("oem_btf", type=Path)
     parser.add_argument("--output-dir", type=Path, default=ROOT / "build")
     args = parser.parse_args()
@@ -80,8 +81,8 @@ def main() -> None:
         raise SystemExit(f"ERROR: final BTF verification failed: {sha256(final_btf)}")
 
     args.output_dir.mkdir(parents=True, exist_ok=True)
-    raw_path = args.output_dir / "RT950_V029_v1.0.firmware.bin"
-    btf_path = args.output_dir / "RT950_V029_v1.0.BTF"
+    raw_path = args.output_dir / "RT950_V029_v1.0_APRS_SMS_TEST24L_BLE_PROGRAMMING_DUAL_DISPATCH.firmware.bin"
+    btf_path = args.output_dir / "RT950_V029_v1.0_APRS_SMS_TEST24L_BLE_PROGRAMMING_DUAL_DISPATCH.BTF"
     raw_path.write_bytes(final_raw)
     btf_path.write_bytes(final_btf)
 

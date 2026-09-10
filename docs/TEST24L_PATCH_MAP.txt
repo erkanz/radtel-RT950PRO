@@ -1,0 +1,43 @@
+RT-950 PRO TEST24L
+BLE PROGRAMMING / KISS DUAL DISPATCH
+
+Base: TEST24K
+
+Patch ranges
+------------
+0x0800BE84..0x0800BE87
+  Branch to dual dispatcher.
+
+0x08053060..0x080530E3
+  Dual dispatcher and OEM programming receive path.
+
+BLE entry
+---------
+r0 = payload length
+r1 = payload pointer
+
+Routing
+-------
+Programming active:
+  OEM programming
+
+Programming inactive, payload starts with RTX1:
+  BLE KISS
+
+All other payloads:
+  OEM programming
+
+KISS continuation:
+  0x0800BE88
+
+Programming state:
+  0x2000AFC4
+
+Programming RX buffer:
+  0x2000AFD4
+
+Programming parser:
+  0x0800C3AC
+
+Programming continuation:
+  0x0801C898

@@ -1,0 +1,41 @@
+RT-950 PRO TEST24L
+HARDWARE CHECKLIST
+
+Bluetooth programming
+---------------------
+PASS  TNC OFF
+PASS  TNC ON
+PASS  Read
+PASS  Write/readback
+PASS  Reconnect
+
+BLE KISS
+--------
+PASS  Connect
+PASS  RX
+PASS  TX
+PASS  RTX response
+
+USB KISS
+--------
+PASS  RX
+PASS  TX
+
+APRS SMS
+--------
+PASS  Incoming SMS
+PASS  Auto-ACK
+PASS  Popup handling
+PASS  Outgoing SMS
+PASS  Message ID
+
+Beacon
+------
+PASS  Display
+PASS  Data
+
+Stability
+---------
+PASS  No timeout
+PASS  No freeze
+PASS  No reboot

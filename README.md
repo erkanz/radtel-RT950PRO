@@ -16,6 +16,17 @@ BLE KISS support has been added and is working reliably.
 - USB KISS RX: Working
 - USB KISS TX: Working
 
+## Latest tested changes
+
+- APRS SMS receive and transmit support with message IDs.
+- Automatic APRS message ACK support, including FT3 CR-terminated message IDs.
+- SMS popup remains visible while ACK is transmitted, with improved popup text readability.
+- OEM APRS beacon display behavior is preserved.
+- Bluetooth programming and BLE KISS now share the BLE receive path without conflict.
+- Hardware regression tests pass for Bluetooth programming with TNC OFF/ON, BLE KISS, USB KISS, APRS SMS, auto-ACK, and beacon display.
+
+Latest verified build: **TEST24L**.
+
 1. OEM HDLC builder raw AX.25 ceiling: **182 bytes**.
 2. OEM header packer structural limit: **maximum 6 digipeaters**. A 7th digipeater collides with the OEM header-length metadata field.
 3. OEM APRS information-field full-fidelity limit: **127 bytes**.

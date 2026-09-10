@@ -1,0 +1,34 @@
+RT-950 PRO TEST24L
+STATIC VERIFICATION
+
+Base
+----
+TEST24K
+
+Modified ranges
+---------------
+0x0800BE84..0x0800BE87
+0x08053060..0x080530E3
+
+Checks
+------
+PASS  Entry hook limited to four bytes
+PASS  Dispatcher placed in unused code space
+PASS  BLE KISS body unchanged
+PASS  OEM programming parser unchanged
+PASS  OEM programming continuation unchanged
+PASS  Programming state checked before RTX1 routing
+PASS  RTX1 traffic routed to BLE KISS
+PASS  Other BLE traffic routed to OEM programming
+PASS  Active programming traffic stays on the OEM path
+PASS  Beacon path unchanged
+PASS  USB KISS unchanged
+PASS  APRS SMS RX/TX unchanged
+PASS  Auto-ACK unchanged
+PASS  Popup handling unchanged
+PASS  Popup font handling unchanged
+PASS  Firmware container round-trip verified
+
+Hardware
+--------
+PASS

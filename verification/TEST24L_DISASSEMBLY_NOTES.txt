@@ -1,0 +1,25 @@
+TEST24L DISASSEMBLY NOTES
+
+0x0800BE84
+  B.W 0x08053060
+
+0x08053060
+  Check programming state at 0x2000AFC4+2.
+  Active sessions use the OEM programming path.
+
+  If inactive:
+    length < 4        -> OEM programming
+    first dword RTX1  -> BLE KISS
+    otherwise         -> OEM programming
+
+BLE KISS
+  Restore the original entry prologue.
+  Continue at 0x0800BE88.
+
+OEM programming
+  Limit input length to 0x40.
+  Copy payload to 0x2000AFD4.
+  Store timeout 2000.
+  Store received length.
+  Call 0x0800C3AC.
+  On session acceptance, update state and continue at 0x0801C898.
