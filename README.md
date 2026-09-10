@@ -7,7 +7,7 @@
 >
 > **Use at your own discretion.**
 
-# RT-950 PRO v1.0
+# RT-950 PRO v1.1
 
 BLE KISS support has been added and is working reliably.
 
@@ -25,7 +25,7 @@ BLE KISS support has been added and is working reliably.
 - Bluetooth programming and BLE KISS now share the BLE receive path without conflict.
 - Hardware regression tests pass for Bluetooth programming with TNC OFF/ON, BLE KISS, USB KISS, APRS SMS, auto-ACK, and beacon display.
 
-Latest verified build: **TEST24L**.
+Current firmware version: **v1.1**.
 
 1. OEM HDLC builder raw AX.25 ceiling: **182 bytes**.
 2. OEM header packer structural limit: **maximum 6 digipeaters**. A 7th digipeater collides with the OEM header-length metadata field.
