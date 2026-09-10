@@ -1,4 +1,4 @@
-name: Build and publish v1.1
+name: Build and publish current release
 
 on:
   workflow_dispatch:
@@ -20,8 +20,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Verify v1.1 build
-        run: python3 scripts/build_v1_1.py oem/OEM_v0.29.BTF
+      - name: Verify firmware build
+        run: python3 scripts/build.py oem/OEM_v0.29.BTF
 
       - name: Publish source-only release
         env:
