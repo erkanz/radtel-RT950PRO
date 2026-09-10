@@ -21,7 +21,7 @@ PATCH_FILES = [
     ROOT / "patches" / "echo_suppression.json",
     ROOT / "patches" / "reporting_app.json",
     ROOT / "patches" / "usb_kiss_tx.json",
-    ROOT / "patches" / "test24l_aprs_sms.json",
+    ROOT / "patches" / "v1_1_aprs_sms.json",
 ]
 
 
@@ -49,7 +49,7 @@ def apply_patch(image: bytearray, address: int, expect: bytes, replace: bytes, p
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Build RT-950 PRO v1.0 TEST24L from OEM V0.29")
+    parser = argparse.ArgumentParser(description="Build RT-950 PRO v1.1 from OEM V0.29")
     parser.add_argument("oem_btf", type=Path)
     parser.add_argument("--output-dir", type=Path, default=ROOT / "build")
     args = parser.parse_args()
@@ -81,8 +81,8 @@ def main() -> None:
         raise SystemExit(f"ERROR: final BTF verification failed: {sha256(final_btf)}")
 
     args.output_dir.mkdir(parents=True, exist_ok=True)
-    raw_path = args.output_dir / "RT950_V029_v1.0_APRS_SMS_TEST24L_BLE_PROGRAMMING_DUAL_DISPATCH.firmware.bin"
-    btf_path = args.output_dir / "RT950_V029_v1.0_APRS_SMS_TEST24L_BLE_PROGRAMMING_DUAL_DISPATCH.BTF"
+    raw_path = args.output_dir / "RT950_V029_v1.1.firmware.bin"
+    btf_path = args.output_dir / "RT950_V029_v1.1.BTF"
     raw_path.write_bytes(final_raw)
     btf_path.write_bytes(final_btf)
 
