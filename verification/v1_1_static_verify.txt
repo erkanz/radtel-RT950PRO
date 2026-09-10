@@ -1,9 +1,9 @@
-RT-950 PRO TEST24L
+RT-950 PRO v1.1
 STATIC VERIFICATION
 
 Base
 ----
-TEST24K
+RT-950 PRO v1.0
 
 Modified ranges
 ---------------

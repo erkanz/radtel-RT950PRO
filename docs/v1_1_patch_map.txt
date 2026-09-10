@@ -1,7 +1,7 @@
-RT-950 PRO TEST24L
+RT-950 PRO v1.1
 BLE PROGRAMMING / KISS DUAL DISPATCH
 
-Base: TEST24K
+Base: RT-950 PRO v1.0
 
 Patch ranges
 ------------

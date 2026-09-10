@@ -1,4 +1,4 @@
-RT-950 PRO TEST24L
+RT-950 PRO v1.1
 HARDWARE CHECKLIST
 
 Bluetooth programming
