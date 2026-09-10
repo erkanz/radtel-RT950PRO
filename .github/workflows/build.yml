@@ -1,4 +1,4 @@
-name: Build and publish v1.0
+name: Build and publish v1.1
 
 on:
   workflow_dispatch:
@@ -19,22 +19,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Build v1.0 from repository OEM
-        run: python3 scripts/build_v1.py oem/OEM_v0.29.BTF
+      - name: Build v1.1 from repository OEM
+        run: python3 scripts/build_v1_1.py oem/OEM_v0.29.BTF
       - uses: actions/upload-artifact@v4
         with:
-          name: RT950_V029_v1.0
+          name: RT950_V029_v1.1
           path: |
-            build/RT950_V029_v1.0.BTF
-            build/RT950_V029_v1.0.firmware.bin
+            build/RT950_V029_v1.1.BTF
+            build/RT950_V029_v1.1.firmware.bin
       - name: Publish latest release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release delete v1.0 --yes --cleanup-tag 2>/dev/null || true
-          gh release create v1.0 \
-            build/RT950_V029_v1.0.BTF \
-            build/RT950_V029_v1.0.firmware.bin \
-            --title "RT-950 PRO v1.0" \
-            --notes "BLE KISS RX/TX working. USB KISS RX/TX working." \
+          gh release delete v1.1 --yes --cleanup-tag 2>/dev/null || true
+          gh release create v1.1 \
+            build/RT950_V029_v1.1.BTF \
+            build/RT950_V029_v1.1.firmware.bin \
+            --title "RT-950 PRO v1.1" \
+            --notes "USB and BLE KISS RX/TX, APRS SMS RX/TX with auto-ACK, OEM beacon display preservation, and Bluetooth programming coexistence." \
             --target "${GITHUB_SHA}"
